@@ -4,8 +4,9 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "start": "node app.js",
-    "devStart": "nodemon app.js"
+    "start": "node index.js",
+    "dev": "nodemon index.js",
+    "build": "npm run build:app && npm run build:assets"
   },
   "author": "",
   "license": "ISC",
