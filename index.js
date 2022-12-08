@@ -3,7 +3,10 @@ const mongoose = require("mongoose");
 const cors = require("cors");
 const BookModel = require("./models/book");
 const PostModel = require("./models/post");
-const app = express();
+const app = express()
+const port = process.env.PORT || 3004;
+
+app.use(cors());;
 
 app.use(express.json());
 app.use(cors());
@@ -31,7 +34,7 @@ app.post("/insert", async (req, res) => {
     }
 });
 
-app.get("/read", async (req, res) => {
+app.get("/", async (req, res) => {
     // FoodModel.find({$where: {foodName:  "Apple"}}, )
     PostModel.find({}, (err, results) => {
         if (err) {
@@ -69,7 +72,7 @@ app.delete("/delete/:id", async (req, res) => {
 });
 
 app.listen(3004, () => {
-    console.log("server runnig on port 3004");
+    console.log("server running on port 3004");
 });
 
 
