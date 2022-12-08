@@ -6,7 +6,7 @@
   "scripts": {
     "start": "node index.js",
     "dev": "nodemon index.js",
-    "build": "npm run build:app && npm run build:assets"
+    "build": "npm run build:app --omit=dev"
   },
   "author": "",
   "license": "ISC",
