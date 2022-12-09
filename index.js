@@ -23,8 +23,19 @@ app.post("/insert", async (req, res) => {
     const postName = req.body.postName;
     const postAuthor = req.body.postAuthor;
     const postContent = req.body.postContent;
-    const postCategory = req.body.postCategory
-    const post = new PostModel({postName: postName, postAuthor: postAuthor, postContent: postContent, postCategory: postCategory});
+    const postCategory = req.body.postCategory;
+    const postTags = req.body.postTags;
+    const postUrl = req.body.postUrl;
+    const postLength = req.body.postLength;
+    const post = new PostModel({
+        postName: postName, 
+        postAuthor: postAuthor, 
+        postContent: postContent, 
+        postCategory: postCategory,
+        postTags: postTags,
+        postUrl: postUrl,
+        postLength: postLength,
+    });
 
     try {
         await post.save();
@@ -42,6 +53,19 @@ app.get("/", async (req, res) => {
         }
 
         res.send(results);
+    });
+});
+
+app.get("/recent", async (req, res) => {
+  PostModel.find({})
+    .sort({ createdAt: -1 })
+    .limit(10)
+    .exec((err, results) => {
+      if (err) {
+        res.send(err);
+      }
+
+      res.send(results);
     });
 });
 

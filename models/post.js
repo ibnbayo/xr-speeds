@@ -11,8 +11,26 @@ const postSchema = new mongoose.Schema({
     postContent: {
         type: String,
     },
+    postUrl: {
+        type: String,
+    },
     postCategory: {
         type: String
+    },
+    postLength: {
+        type: Number,
+    },
+    postTags: {
+        type: Array,
+        
+    },
+    createdAt: {
+    type: Date,
+    default: Date.now
+    },
+    updatedAt: {
+    type: Date,
+    default: Date.now
     }
 });
 
