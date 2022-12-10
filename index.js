@@ -55,23 +55,7 @@ app.get('/pagination/', (req, res) => {
     sort: { createdAt: -1 }
   };
 
-//    PostModel.paginate(...new PaginationParameters(req).get()).then((result) => {
-// //   PostModel.paginate(query, options, (err, result) => {
-//     // if (err) {
-//     //   const { docs, totalDocs, limit, totalPages } = result;
 
-//   // Send the paginated results as a JSON response
-//   res.json(result);
-// //     {
-// //     totalResults: totalDocs,
-// //     totalPages: totalPages,
-// //     resultsPerPage: limit,
-// //     results: docs,
-// //   });
-//     // } else {
-//     //   res.json(result);
-//     // }
-//   });
 
 
 PostModel.paginate({}, options).then((result) => {
@@ -83,7 +67,7 @@ PostModel.paginate({}, options).then((result) => {
 
 
 app.get("/", async (req, res) => {
-    // FoodModel.find({$where: {foodName:  "Apple"}}, )
+
     PostModel.find({}, (err, results) => {
         if (err) {
             res.send(err);
