@@ -7,6 +7,8 @@ const PostModel = require("./models/post");
 const app = express()
 const port = process.env.PORT || 3004;
 const { PaginationParameters } = require('mongoose-paginate-v2');
+const RssParser = require('rss-parser');
+
 app.use(cors());;
 
 app.use(express.json());
@@ -88,6 +90,17 @@ app.get("/recent", async (req, res) => {
 
       res.send(results);
     });
+});
+
+app.get('/rss-feed', async (req, res) => {
+  // Create a new RSS parser instance
+  const parser = new RssParser();
+
+  // Fetch and parse the RSS feed
+  const feed = await parser.parseURL('https://media.rss.com/xratlas/feed.xml');
+
+  // Send the parsed feed data as a JSON response
+  res.json(feed);
 });
 
 app.put("/update", async (req, res) => {
